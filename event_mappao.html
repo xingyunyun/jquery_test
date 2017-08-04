@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件的冒泡与捕获</title>
+    <style>
+        .pre{
+            width: 300px;
+            height: 300px;
+            border:2px solid #000;
+        }
+        .son{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+<div class="pre">
+    <div class="son"></div>
+</div>
+</body>
+</html>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script>
+    /*事件的冒泡与捕获*/
+    $(function(){
+        $(".pre").on("click",function(){
+            alert(1);
+        },true);//默认是false冒泡，true是捕获是捕获(这个属性jquery中不能体现，原生可以)
+        $(".pre").click(function(){
+            alert(1);
+        });
+
+        $(".son").click(function(e){
+            alert(2);
+            e.stopPropagation();//阻止冒泡的方式
+        });
+
+
+
+
+
+    })
+    //面试题：事件冒泡与事件捕获 哪个效率更高
+    //事件捕获比事件冒泡效率要高的多
+
+
+</script>
